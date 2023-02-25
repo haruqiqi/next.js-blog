@@ -3,9 +3,15 @@ import {getAllPostIds, getPostData} from '../../lib/posts'
 import Head from "next/head";
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
-// 问题： 为什么使用js 文件的时候可以正常的渲染页面，但是使用 ts 文件的时候就会报错？
+
+type PostDataType = {
+ title: string;
+ id: string;
+ [k: string]: string;
+}
+
 //1 A React Component to render this page
-export default function Post({postData}) {
+export default function Post({postData}: {postData: PostDataType}) {
   return <Layout home={false}>
       <Head>
         <title> {postData.title} </title>
@@ -35,7 +41,7 @@ export async function getStaticPaths() {
   }
 }
 // 3 getStaticProps which fetches necessary data for the post with id
-export async function getStaticProps({params}) {
+export async function getStaticProps({params}: {params:PostDataType }) {
   // Fetch necessary data for the blog post using params.id
   const postData = await getPostData(params.id)
   return {

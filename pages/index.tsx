@@ -5,7 +5,9 @@ import {getSortedPostedData} from '../lib/posts';
 import Link from 'next/link';
 import Date from '@/components/date';
 
-export default function Home({allPostsData}) {
+type allPostsDataItemType = {id: string; title: string; date: string}[]
+
+export default function Home({allPostsData}: {allPostsData: allPostsDataItemType}) {
   return (
     <>
     <Layout home>
@@ -15,11 +17,10 @@ export default function Home({allPostsData}) {
       <section className={utilStyles.headingMd}>
         <p>[Haru]</p>
         <p>
-        (This is a sample website - you'll be building a site like this on{' '}
+        (This is a sample website - you will be building a site like this on{' '}
           <a href="https://www.nextjs.cn/learn">our Next.js tutorial</a>.)
         </p>
       </section>
-
       <section className={`${utilStyles.headingMd} ${utilStyles['padding1px']}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>

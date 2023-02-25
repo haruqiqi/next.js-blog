@@ -3,11 +3,12 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Head from 'next/head'
+import Image from 'next/image'
 
 const name = 'haru'
 export const siteTitle ='Next.js Sample Website'
 
-const Layout = ({children, home}) => {
+const Layout = ({children, home}: {children: React.ReactNode, home: boolean}) => {
   return (
     <div className={styles.container}>
     <Head>
@@ -28,7 +29,7 @@ const Layout = ({children, home}) => {
       <header className={styles.header}>
       {home ? (
           <>
-            <img
+            <Image
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
@@ -39,7 +40,7 @@ const Layout = ({children, home}) => {
           <>
             <Link href="/">
               
-                <img
+                <Image
                   src="/images/profile.jpg"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}

@@ -21,16 +21,20 @@ export function getSortedPostedData() {
       id,
       ...matterResult.data
     }
-  })               
+  })       
+  
 
+  /**
+   *allPostsDataItemType = {id: string; title: string; date: string}[] 
+   */ 
   return allPostsData.sort((a,b) => {
-    if(a.date < b.date){
+    if(a < b){
       return 1;
     } else {
       return -1;
     }
   })
-  // const allPostsData =
+ 
 }
 
 export function getAllPostIds() {
@@ -39,7 +43,7 @@ export function getAllPostIds() {
   return fileNames.map(fileNames => ({params: {id: fileNames.replace(/\.md$/,'')}}))
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf-8');
   // use gray-matter to parse the post metadata section
